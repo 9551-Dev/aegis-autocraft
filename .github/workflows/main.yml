@@ -1,0 +1,35 @@
+name: minify Lua files
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  minify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v3
+      - name: set up illuaminate
+        run: |
+          if [ ! -d "bin" ]; then mkdir bin; fi
+          if [ ! -f "bin/illuaminate" ]; then
+            wget -q -O bin/illuaminate https://squiddev.cc/illuaminate/bin/latest/illuaminate-linux-x86_64
+            chmod +x bin/illuaminate
+          fi
+      - name: minify Lua files
+        run: |
+          find . -name "*.lua" -not -path "./.git/*" | while read -r file; do
+            ./bin/illuaminate minify "$file" > "$file.tmp"
+            mv "$file.tmp" "$file"
+          done
+      - name: Push stuff branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b minified
+          git add .
+          git commit -m "Minify Lua files"
+          git push -f origin minified
