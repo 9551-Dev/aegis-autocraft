@@ -2,7 +2,7 @@
 
 Monitor-driven autocrafting for Minecraft — ComputerCraft / CC:Tweaked. Craft something once — the system records the recipe and automates it from then on.
 
-Supports most modded machines. Stress-tested on endgame Modern Industrialization chains — fluid and hybrid recipes, probabilistic outputs, 100+ stage crafts.
+Supports most modded machines. Stress-tested on endgame Modern Industrialization chains — fluid and hybrid recipes, probabilistic outputs, 170+ stage crafts.
 
 ---
 
