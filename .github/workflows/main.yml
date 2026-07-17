@@ -28,12 +28,15 @@ jobs:
           find . -name "*.lua" -not -path "./.git/*" -exec sh -c '
             for file do
               tmp=$(mktemp)
-              if luamin -f "$file" > "$tmp"; then
+
+              if luamin -f "$file" > "$tmp" 2>err.log; then
                 mv "$tmp" "$file"
-                echo "minified: $file"
+                echo "$file minified."
               else
-                echo "failed to minify: $file"
-                rm "$tmp"
+                echo "fuckkk"
+                cat err.log
+                rm "$tmp" rm err.log
+                exit 1
               fi
             done
           ' _ {} +
