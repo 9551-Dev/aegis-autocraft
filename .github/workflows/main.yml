@@ -24,9 +24,8 @@ jobs:
       - name: Minify Lua files
         run: |
           for file in $(find . -name "*.lua"); do
-            tmp=$(mktemp)
-            luamin -f "$file" > "$tmp"
-            mv "$tmp" "$file"
+            echo "testing: $file"
+            luamin -f "$file" || echo "CRASHED WITH EXIT CODE: $?"
           done
 
       - name: Push stuff branch
