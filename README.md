@@ -33,8 +33,7 @@ Supports most modded machines. Stress-tested on endgame Modern Industrialization
 ---
 
 ## Installation
-
-**Drag & drop:** download ZIP → open the computer's terminal in-game → drag `computer/startup.lua` onto the Minecraft window → `reboot`. Same for turtles with `turtle/startup.lua`.
+**Drag & drop:** download [code repository (minified)](/archive/refs/heads/minified.zip) -> unzip -> open the computer's terminal in-game -> drag `computer/startup.lua` onto the Minecraft window -> `reboot`. Same for turtles with `turtle/startup.lua`.
 
 **Setup:** NETWORK tab → mark storages [VAULT], one barrel [T.BOX], turtles [TURTLE]. Done.
 
