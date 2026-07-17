@@ -35,7 +35,8 @@ jobs:
               else
                 echo "fuckkk"
                 cat err.log
-                rm "$tmp" rm err.log
+                rm "$tmp"
+                rm err.log
                 exit 1
               fi
             done
