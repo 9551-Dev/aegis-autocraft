@@ -27,7 +27,7 @@ jobs:
         run: |
           find . -name "*.lua" -not -path "./.git/*" -exec sh -c '
             echo "file: $1"
-            luamin --file $1
+            luamin --code $(cat "$1")
             echo ""
           ' _ {} \;
 
