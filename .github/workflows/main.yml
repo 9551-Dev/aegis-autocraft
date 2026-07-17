@@ -8,6 +8,8 @@ on:
 jobs:
   minify:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: code checkout
@@ -29,11 +31,16 @@ jobs:
             mv "$tmp" "$file"
           done
 
-      - name: Push stuff branch
+      - name: Make archive thingy
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -B minified
-          git add .
-          git commit -m "Minify Lua files" || exit 0
-          git push -f origin minified
+          zip -r minified.zip . -x "*.git*" -x "*.github*"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-minified
+          name: "Latest build"
+          body: "Actions build."
+          draft: false
+          prerelease: false
+          files: minified.zip
